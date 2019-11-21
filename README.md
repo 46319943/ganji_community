@@ -1,5 +1,7 @@
 # 爬取赶集网上各个城市的小区信息
 - 注意
+    - 使用SSR中PAC智能代理时，访问赶集网走了代理。因此和requests请求不是同一个IP
+    - 赶集网根据IP限制访问
     - vscode使用jedi进行智能提示的支持
     - MicrosoftPythonLanguageServer不成熟，速度慢、占用资源高
 - 不足：
