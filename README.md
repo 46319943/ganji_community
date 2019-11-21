@@ -1,0 +1,10 @@
+# 爬取赶集网上各个城市的小区信息
+- 注意
+    - vscode使用jedi进行智能提示的支持
+    - MicrosoftPythonLanguageServer不成熟，速度慢、占用资源高
+- 不足：
+    - 优化人工验证提醒
+    - 配置、请求模块化
+    - 代理池
+    - selenium尝试
+    - 智能验证
