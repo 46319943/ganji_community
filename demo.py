@@ -36,15 +36,16 @@ def fetch(url, **kwargs):
         url = url.replace('//', 'http://', 1)
     while True:
         try:
-            r = requests.get(url, timeout=10, proxies=proxies, **kwargs)
+            # r = requests.get(url, timeout=10, proxies=proxies, **kwargs)
+            r = requests.get(url, timeout=10, **kwargs)
             while r.text.strip() == '':
                 print('请求内容为空，重新请求')
-                r = requests.get(url, timeout=10, proxies=proxies, **kwargs)
+                r = requests.get(url, timeout=10, **kwargs)
             while '进行验证码校验' in r.text:
                 print(url)
                 print('程序暂停，请访问链接进行人机验证！')
                 os.system("pause")
-                r = requests.get(url, timeout=10, proxies=proxies, **kwargs)
+                r = requests.get(url, timeout=10, **kwargs)
             return r
         except TimeoutError as e:
             print(url)
@@ -96,7 +97,14 @@ def main(city):
     # 对应城市的子域名
     index_href = index_a['href']
 
+    # --------
+    list_r = requests.get(index_href + 'chuzu/pn1')
+    list_bs = BeautifulSoup(list_r.text, BS_PARSER)
+    subarea_list = [x['href'] for x in list_bs.select('.thr-list a')]
+    # --------
+
     page = 0
+    # TODO:在这里改变链接，来爬取不同区域的房租列表
     list_href = index_href + 'chuzu/pn1'
     while True:
         # 出租页面列表
